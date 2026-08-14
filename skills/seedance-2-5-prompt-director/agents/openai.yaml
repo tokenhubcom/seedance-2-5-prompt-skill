@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance 2.5 Prompt Director"
+  short_description: "Create production-ready Seedance 2.5 video prompts."
+  default_prompt: "Use $seedance-2-5-prompt-director to turn my video brief into a production-ready Seedance 2.5 prompt."
