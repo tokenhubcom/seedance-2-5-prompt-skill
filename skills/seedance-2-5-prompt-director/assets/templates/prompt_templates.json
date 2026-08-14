@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "model_family": "Seedance 2.5",
+  "usage_note": "Select one template, replace every placeholder, remove irrelevant instructions, and adapt timing to the requested duration. If the interface provides a reference token, copy it exactly. If no token is visible, replace the reference placeholder with a plain-English asset description. Never expose an unfilled placeholder in a finished prompt.",
+  "templates": [
+    {
+      "id": "cinematic-long-narrative",
+      "mode": "text-to-video",
+      "use_when": "A coherent 20–30 second cinematic sequence needs multiple timed beats.",
+      "required_inputs": ["subject", "setting", "primary action arc", "visual style", "ending"],
+      "prompt_template": "Create a {{duration}}-second cinematic sequence. [0–{{opening_end}}s] Establish {{subject}} in {{setting}}, framed as {{opening_shot}}, with {{lighting}} and {{ambient_sound}}. [{{opening_end}}–{{development_end}}s] {{subject}} {{primary_action}} while the camera performs {{camera_movement}}; preserve identity, wardrobe, spatial layout, and lighting continuity. [{{development_end}}–{{duration}}s] Complete the action with {{closing_action}} and finish on {{final_composition}}, holding the final image for {{hold_duration}} seconds. Visual treatment: {{visual_style}}. Sound: {{sound_plan}}. No unrelated characters, no accidental text, and no unexplained scene changes."
+    },
+    {
+      "id": "vertical-social-story",
+      "mode": "text-to-video",
+      "use_when": "A short vertical social video needs an immediate hook and readable ending.",
+      "required_inputs": ["hook", "subject", "single action", "closing payoff"],
+      "prompt_template": "9:16 vertical video, {{duration}} seconds. Open immediately on {{hook}} in a tight {{opening_shot}}. {{subject}} performs {{single_action}} with natural micro-movements while the camera uses {{camera_style}}. Keep the subject centered within mobile-safe framing and maintain {{lighting_style}}. End with {{closing_payoff}} in a clean, stable composition. Audio: {{audio_direction}}. No captions or interface graphics; reserve clear space for post-production text if requested."
+    },
+    {
+      "id": "ecommerce-product-reveal",
+      "mode": "reference-to-video",
+      "use_when": "A product reference must remain accurate during a commercial reveal.",
+      "required_inputs": ["product reference", "product action", "environment", "final hero frame"],
+      "prompt_template": "Use {{product_reference}} as the sole source of product shape, materials, proportions, colors, and packaging details. Place the product in {{environment}}. Begin with {{opening_composition}}, then {{product_action}} as the camera performs {{camera_movement}}. Keep all product geometry and label placement stable. Lighting: {{lighting}}. Finish on {{final_hero_frame}} with the product fully visible and sharply focused. Sound: {{sound_design}}. Do not add, remove, rewrite, or distort product details; add marketing text only in post-production."
+    },
+    {
+      "id": "first-frame-natural-motion",
+      "mode": "first-frame-image-to-video",
+      "use_when": "A source image should become a controlled moving shot without changing its identity or composition.",
+      "required_inputs": ["first-frame reference", "subject motion", "camera motion", "ending"],
+      "prompt_template": "Use {{first_frame_reference}} as the opening frame and visual anchor. Preserve the subject identity, clothing, environment, composition, materials, and baseline lighting. Animate {{subject_motion}} with physically natural timing while the camera performs {{camera_motion}}. Add only subtle secondary motion: {{secondary_motion}}. Maintain continuity throughout and end on {{ending}}. Audio: {{audio_direction}}. Do not redesign or replace elements from the source image."
+    },
+    {
+      "id": "first-last-frame-transition",
+      "mode": "first-and-last-frame-image-to-video",
+      "use_when": "Two images define the opening and closing states of one continuous transformation.",
+      "required_inputs": ["first-frame reference", "last-frame reference", "transition action"],
+      "prompt_template": "Start exactly from {{first_frame_reference}} and end exactly at {{last_frame_reference}}. Create one continuous, physically plausible transition in which {{transition_action}}. Preserve the shared subject identity, geometry, environment, and lighting logic between both frames. Camera plan: {{camera_plan}}. Keep intermediate motion readable and avoid unrelated objects or scene changes. Arrive at the final frame naturally and hold it for {{hold_duration}} seconds."
+    },
+    {
+      "id": "multi-reference-character-consistency",
+      "mode": "reference-to-video",
+      "use_when": "Several references define a recurring character, environment, motion style, and audio cue.",
+      "required_inputs": ["identity reference", "environment reference", "action", "final frame"],
+      "prompt_template": "Reference roles: {{identity_reference}} defines the character's face, body proportions, hair, and wardrobe; {{environment_reference}} defines the location and lighting; {{motion_reference}} defines movement rhythm only; {{audio_reference}} defines sound timing only. Create a {{duration}}-second scene in which the character {{action}}. Use {{shot_plan}}. Preserve character identity and wardrobe in every shot. Keep the environment spatially consistent. Synchronize {{sync_event}} with the referenced audio cue. Finish on {{final_frame}}. Ignore any reference characteristics outside the assigned roles."
+    },
+    {
+      "id": "precise-video-edit",
+      "mode": "edit",
+      "use_when": "A small region or property in an existing video must change while everything else remains stable.",
+      "required_inputs": ["source-video reference", "edit target", "requested change", "preservation rules"],
+      "prompt_template": "Edit {{source_video_reference}}. Change only {{edit_target}} by {{requested_change}}. Preserve {{preservation_rules}}, including the original subject motion, camera movement, timing, framing, environment, lighting, shadows, audio, and all untouched regions. The edited element must follow the original scene's perspective, motion blur, occlusion, reflections, and color treatment. Do not introduce any other changes."
+    },
+    {
+      "id": "continuity-preserving-extension",
+      "mode": "extension",
+      "use_when": "An existing video must continue naturally beyond its final frame.",
+      "required_inputs": ["source-video reference", "continuation action", "new ending"],
+      "prompt_template": "Extend {{source_video_reference}} from its final frame. Continue the existing subject motion, camera momentum, spatial layout, lighting direction, atmosphere, and audio without a visible seam. The next action is {{continuation_action}}. Keep identity, wardrobe, object geometry, and environmental details unchanged. Develop the continuation for {{extension_duration}} seconds and end on {{new_ending}}, holding the final composition cleanly."
+    },
+    {
+      "id": "multilingual-music-performance",
+      "mode": "reference-to-video",
+      "use_when": "A music or dialogue performance needs timed shots, exact spoken lines, and synchronized audio.",
+      "required_inputs": ["performer reference", "audio reference", "exact dialogue or lyrics", "shot timeline"],
+      "prompt_template": "Use {{performer_reference}} for performer identity and wardrobe, and {{audio_reference}} for timing and musical rhythm. Create a {{duration}}-second performance in {{setting}}. Follow this shot timeline exactly: {{shot_timeline}}. The performer delivers {{exact_spoken_content}} in {{spoken_language}}, with natural facial performance and synchronized mouth movement. Match {{sync_actions}} to the specified audio beats. Preserve identity across every cut. Sound mix: clear voice, {{ambience}}, and referenced music. Use only {{transition_style}} transitions and finish on {{final_group_or_portrait_frame}}. No subtitles or duplicated performers."
+    }
+  ]
+}
